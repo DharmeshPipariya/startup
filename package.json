@@ -1,0 +1,32 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "Startup for Web developemnt",
+  "keywords": [
+    "startup",
+    "front end development",
+    "sass",
+    "livereload",
+    "static server"
+  ],
+  "author": "Dharmesh Pipariya <pipariyadharmesh@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DharmeshPipariya/startup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DharmeshPipariya/startup/issues"
+  },
+  "homepage": "https://github.com/DharmeshPipariya/startup#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.1",
+    "jquery": "^1.11.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1",
+    "gulp-webserver": "^0.9.1"
+  }
+}
