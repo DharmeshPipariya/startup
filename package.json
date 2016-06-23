@@ -1,6 +1,6 @@
 {
   "name": "startup",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Startup for Web developemnt",
   "keywords": [
     "startup",
@@ -25,7 +25,12 @@
     "jquery": "^1.11.3"
   },
   "devDependencies": {
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify": "0.0.12",
+    "gulp-rev": "^7.1.0",
     "gulp-sass": "^2.3.1",
     "gulp-webserver": "^0.9.1"
   }
