@@ -1,3 +1,31 @@
-﻿$bg-color: #f6f6f6;
+/*!
+ * Startup
+ * Copyright 2016 The Startup Authors
+ */
 
-body { background: $bg-color; }
+// Core variables and mixins
+@import "variables";
+@import "mixins";
+
+// Reset and dependencies
+@import "normalize";
+@import "print";
+
+// Core CSS
+@import "reset";
+@import "fonts";
+@import "type";
+@import "images";
+@import "code";
+@import "grid";
+@import "tables";
+@import "forms";
+@import "buttons";
+
+// Components
+@import "animation";
+@import "button-group";
+@import "card";
+
+// Utility classes
+@import "utilities";
