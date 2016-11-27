@@ -1,31 +1,183 @@
-/*!
- * Startup
- * Copyright 2016 The Startup Authors
- */
+$white: #fff;
+$black: #000;
+$primary: #ffd800;
+/* Reset */
+html {
+}
 
-// Core variables and mixins
-@import "variables";
-@import "mixins";
+body {
+}
 
-// Reset and dependencies
-@import "normalize";
-@import "print";
+a {
+}
 
-// Core CSS
-@import "reset";
-@import "fonts";
-@import "type";
-@import "images";
-@import "code";
-@import "grid";
-@import "tables";
-@import "forms";
-@import "buttons";
+/* Common */
+.page-header {
+  position: relative;
+  text-align: center;
+  border: 0;
+  margin-bottom: 30px;
 
-// Components
-@import "animation";
-@import "button-group";
-@import "card";
+  &:after {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 5px;
+    margin-left: -100px;
+    background: $primary;
+    content: '';
+  }
+}
 
-// Utility classes
-@import "utilities";
+.form-group {
+  margin: 18px 0;
+}
+
+.form-control {
+  border-radius: 2px;
+  border-color: rgba($black,0.38);
+  box-shadow: none;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  color: $black;
+  background-color: $primary;
+  border: 0;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: $black;
+    background-color: $primary;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.btn-lg {
+  border-radius: 3px;
+}
+
+.icon-round {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  text-align: center;
+  font-size: 70px;
+  line-height: 200px;
+  border: 5px solid $primary;
+  border-radius: 50%;
+}
+
+/* Header */
+.header {
+  background: rgba($black,0.5);
+  border: 0;
+
+  .navbar-brand {
+    height: 60px;
+
+    img {
+      max-height: 100%;
+    }
+  }
+
+  &.navbar-inverse .navbar-nav {
+    & > li > a {
+      color: #ddd;
+      line-height: 30px;
+    }
+
+    & > .active {
+      & > a,
+      & > a:focus,
+      & > a:hover {
+        background: transparent;
+        color: #ffd800;
+      }
+    }
+  }
+}
+
+/* Section */
+.section {
+  position: relative;
+  display: block;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  &.section-gray {
+    background: #f1f1f1;
+  }
+
+  &.section-banner {
+    background: url(../img/banner.jpg);
+    padding: 200px;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      background: rgba($black,0.3);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      color: $white;
+    }
+  }
+}
+
+/* Footer */
+.footer {
+  background: #313131;
+  color: #eee;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: #eee;
+
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+  }
+
+
+
+  .container {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .copy {
+    padding: 15px;
+    background: #212121;
+    text-align: center;
+    color: #888;
+  }
+}
