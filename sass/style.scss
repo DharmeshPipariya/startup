@@ -80,6 +80,32 @@ a {
   border-radius: 50%;
 }
 
+.social {
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      border: 1px solid;
+      border-radius: 16px;
+      margin: 5px;
+      line-height: 32px;
+      box-sizing: border-box;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.highlight {
+  color: $primary;
+}
+
 /* Header */
 .header {
   background: rgba($black,0.5);
@@ -90,6 +116,7 @@ a {
 
     img {
       max-height: 100%;
+      max-width: 200px;
     }
   }
 
@@ -114,7 +141,7 @@ a {
 .section {
   position: relative;
   display: block;
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 80px;
 
   &.section-gray {
@@ -122,8 +149,13 @@ a {
   }
 
   &.section-banner {
+    height: 100vh;
+    min-height: 200px;
+    padding: 100px 0;
     background: url(../img/banner.jpg);
-    padding: 200px;
+    background-size: cover;
+    background-attachment: fixed;
+
 
     &:after {
       position: absolute;
@@ -137,6 +169,8 @@ a {
 
     .container {
       position: relative;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1;
       color: $white;
     }
@@ -146,10 +180,11 @@ a {
 /* Footer */
 .footer {
   background: #313131;
-  color: #eee;
+  color: #ddd;
 
   h3 {
     margin-top: 0;
+    opacity: 0.6;
   }
 
   ul {

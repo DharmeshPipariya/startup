@@ -48,12 +48,10 @@
   </header>
   <section class="section section-banner">
     <div class="container">
-      <h1>test</h1>
-      <div class="text-heading">
-        <h1 class="animated bounceInDown visible" data-animation="bounceInDown" data-delay="0">Do not wait — <span class="highlight">launch</span> your startup now!</h1>
-        <p class="animated fadeInDown visible" data-animation="fadeInDown" data-delay="500">
-        </p><p class="text-bolder">Promact: Startup IT Services Specialist</p>
-        <p> We have a unique expertise in dealing with startups and managing stacks.</p>
+      <div class="text-center">
+        <h1>Do not wait — <span class="highlight">launch</span> your startup now!</h1>
+        <p>Promact: Startup IT Services Specialist</p>
+        <p>We have a unique expertise in dealing with startups and managing stacks.</p>
       </div>
     </div>
   </section>
@@ -111,7 +109,25 @@
           </form>
         </div>
         <div class="col-sm-5">
-
+          <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+          <div style='overflow:hidden;height:300px;width:100%; box-shadow:0 0 8px #999;'>
+            <div id='gmap_canvas' style='height:300px;width:100%;'></div><div>
+            </div>
+            <style>
+              #gmap_canvas img {
+                max-width: none !important;
+                background: none !important;
+              }
+            </style>
+          </div>
+          <script type='text/javascript'>
+            function init_map() {
+              var myOptions = { zoom: 10, center: new google.maps.LatLng(22.279012511661556, 73.19129190957031), mapTypeId: google.maps.MapTypeId.ROADMAP };
+              map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+              marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(22.279012511661556, 73.19129190957031) });
+              infowindow = new google.maps.InfoWindow({ content: '<strong>Promact</strong><br>Manjalpur, Vadodara, India - 390011<br>' });
+              google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker);
+            } google.maps.event.addDomListener(window, 'load', init_map);</script>
         </div>
       </div>
     </div>
@@ -120,31 +136,28 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <h3>Contact</h3>
-          <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
+          <h3>About</h3>
+          <p class="text-justify">Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section. Loum Ipsum Dummy Content for the section.</p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Social</h3>
+          <ul class="social">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
           </ul>
         </div>
         <div class="col-sm-4">
           <h3>Contact</h3>
-          <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-4">
-          <h3>Contact</h3>
-          <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 1</a></li>
-          </ul>
+          <address>
+            Promact infotech Pvt. Ltd.
+            <br />
+            Manjalpur, Vadodara
+            <br />
+            India - 390011
+          </address>
+          <a href="mailto:info@promactinfo.com">info@promactinfo.com</a>
         </div>
       </div>
     </div>
