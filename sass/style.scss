@@ -106,6 +106,22 @@ a {
   color: $primary;
 }
 
+.goto-next {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  color: $white;
+  font-size: 30px;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid $white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 /* Header */
 .header {
   background: rgba($black,0.5);
