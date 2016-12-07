@@ -6,13 +6,13 @@ var del = require("del");
 
 var paths = {
   nodeModules: './node_modules/',
-  src: './Src/',
-  dist: './Dist/',
+  src: './src/',
+  dist: './dist/',
 };
-paths.jsLibsSrc = paths.src + "Scripts/lib/";
-paths.cssLibsSrc = paths.src + "Content/lib/";
-paths.jsLibsDest = paths.dist + "Scripts/lib/";
-paths.cssLibsDest = paths.dist + "Content/lib/";
+paths.jsLibsSrc = paths.src + "assets/js/";
+paths.cssLibsSrc = paths.src + "assets/css/";
+paths.jsLibsDest = paths.dist + "assets/js/";
+paths.cssLibsDest = paths.dist + "assets/css/";
 config = {
   jsLibs: [
       paths.nodeModules + 'jquery/dist/jquery.js',
