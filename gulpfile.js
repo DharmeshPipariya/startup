@@ -1,76 +1,70 @@
-var gulp = require('gulp');
-var clean = require('gulp-clean');
-var sass = require('gulp-sass');
-var serve = require('gulp-server-livereload');
-var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
+var gulp = require("gulp");
+var inject = require("gulp-inject");
+var wrap = require("gulp-wrap");
+var rename = require("gulp-rename");
+var del = require("del");
 
-/*Clean*/
-gulp.task('clean', function () {
-  return gulp.src('dist', { read: false }).pipe(clean(null));
+var paths = {
+  nodeModules: './node_modules/',
+  src: './Src/',
+  dist: './Dist/',
+};
+paths.jsLibsSrc = paths.src + "Scripts/lib/";
+paths.cssLibsSrc = paths.src + "Content/lib/";
+paths.jsLibsDest = paths.dist + "Scripts/lib/";
+paths.cssLibsDest = paths.dist + "Content/lib/";
+config = {
+  jsLibs: [
+      paths.nodeModules + 'jquery/dist/jquery.js',
+      paths.nodeModules + 'bootstrap/dist/js/bootstrap.js'
+  ],
+  cssLibs: [
+      paths.nodeModules + '/bootstrap/dist/css/bootstrap.css'
+  ]
+};
+
+gulp.task('default', ['inject:layout']);
+
+gulp.task('scripts:clean', function () {
+  return del([paths.jsLibsSrc]);
 });
 
-/*Lint*/
-gulp.task('lint', function () {
-  //lint
+gulp.task('scripts:moveToSrc', ['scripts:clean'], function () {
+  return gulp.src(config.jsLibs)
+    .pipe(gulp.dest(paths.jsLibsSrc));
 });
 
-/*Vendor*/
-gulp.task('vendor', function () {
-  //vendor
+gulp.task('styles:clean', function () {
+  return del([paths.cssLibsSrc]);
 });
 
-/*Build*/
-gulp.task('build', function () {
-  //build
-});
-gulp.task(':build:scss', function () {
-  return gulp.src('./scss/**/*.scss')
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(autoprefixer({
-        browsers: [
-          'last 2 versions',
-          'not ie <= 10',
-          'not ie_mob <= 10',
-        ],
-        cascade: false,
-      }))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/css'));
+gulp.task('styles:moveToSrc', ['styles:clean'], function () {
+  return gulp.src(config.cssLibs)
+    .pipe(gulp.dest(paths.cssLibsSrc));
 });
 
-/*Watch*/
-gulp.task('watch', function () {
-  gulp.watch('./scss/**/*.scss', [':build:scss']);
-  gulp.watch('./docs/**/*.html', [':build:docs']);
+gulp.task('dist:clean', ['scripts:moveToSrc', 'styles:moveToSrc'], function () {
+  return del(paths.dist);
 });
 
-/*Serve*/
-gulp.task('serve', function () {
-  return gulp.src('dist').pipe(serve({
-    livereload: liveReload,
-    fallback: 'index.html',
-    port: 8001,
-    open: true
-  }));
+gulp.task('html:wrap', ['dist:clean'], function () {
+  return gulp.src([paths.src + '**/*.html', '!' + paths.src + '**/_*.html'])
+      .pipe(wrap({ src: paths.src + '_layout.html' }))
+      .pipe(gulp.dest(paths.dist));
 });
 
-/*Release*/
-gulp.task('release', function () {
-  //release
+gulp.task('files:moveToDist', ['html:wrap'], function () {
+  return gulp.src([paths.src + '**/*.js', paths.src + '**/*.css', paths.src + '**/*.png'])
+      .pipe(gulp.dest(paths.dist));
 });
 
-/*Test*/
-gulp.task('test', function () {
-  //test
+gulp.task('inject:layout', ['files:moveToDist'], function () {
+  var target = gulp.src(paths.dist + "**/*.html");
+  var sources = gulp.src([paths.jsLibsDest + '*.js', paths.cssLibsDest + '*.css'], { read: false });
+  return target.pipe(inject(sources, { relative: true }))
+       .pipe(gulp.dest(paths.dist));
 });
 
-
-gulp.task('sass', function () {
-  return gulp.src('./sass/**/*.scss')
-   .pipe(sass().on('error', sass.logError))
-   .pipe(gulp.dest('./css'));
+gulp.task('html:watch', function () {
+  gulp.watch(paths.src + '**/*.html', ['inject:layout']);
 });
-
-gulp.task('default', ['serve']);
