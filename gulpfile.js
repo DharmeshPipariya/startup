@@ -5,6 +5,7 @@ var serve = require('gulp-server-livereload');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
+var wrap = require("gulp-wrap");
 
 /*Clean*/
 gulp.task('clean', function () {
@@ -40,7 +41,11 @@ gulp.task(':build:scss', function () {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest('dist/css'));
 });
-gulp.task(':build:docs', function () { });
+gulp.task(':build:docs', function () {
+  return gulp.src(['./docs/**/*.html', '!./docs/**/_*.html'])
+      .pipe(wrap({ src: './docs/_layout.html' }))
+      .pipe(gulp.dest('./dist'));
+});
 
 gulp.task(':build:img', function () {
   return gulp.src('./docs/assets/img/**/*.+(png|jpg|gif|svg)')
