@@ -5,7 +5,8 @@ var serve = require('gulp-server-livereload');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
-var wrap = require("gulp-wrap");
+var wrap = require('gulp-wrap');
+var inject = require('gulp-inject');
 
 /*Clean*/
 gulp.task('clean', function () {
@@ -19,7 +20,8 @@ gulp.task('lint', function () {
 
 /*Vendor*/
 gulp.task('vendor', function () {
-  //vendor
+  //return gulp.src([paths.src + '**/*.js', paths.src + '**/*.css', paths.src + '**/*.png'])
+  //    .pipe(gulp.dest(paths.dist));
 });
 
 /*Build*/
@@ -41,10 +43,14 @@ gulp.task(':build:scss', function () {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest('dist/css'));
 });
-gulp.task(':build:docs', function () {
-  return gulp.src(['./docs/**/*.html', '!./docs/**/_*.html'])
+gulp.task(':build:docs', ['vendor'], function () {
+  gulp.src(['./docs/**/*.html', '!./docs/**/_*.html'])
       .pipe(wrap({ src: './docs/_layout.html' }))
       .pipe(gulp.dest('./dist'));
+
+  return gulp.src('./dist/**/*.html')
+    .pipe(inject(gulp.src(['./docs/**/*.js', './docs/**/*.css'], { read: false }), { relative: true }))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task(':build:img', function () {
