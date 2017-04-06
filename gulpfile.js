@@ -7,6 +7,7 @@ gutil = require('gulp-util');
 concat = require('gulp-concat');
 uglify = require('gulp-uglify');
 sass = require('gulp-sass');
+scsslint = require('gulp-scss-lint');
 connect = require('gulp-connect');
 del = require('del');
 autoprefixer = require('gulp-autoprefixer');
@@ -24,7 +25,12 @@ gulp.task('clean', function () {
   del('dist');
 });
 
-gulp.task(':lint:scss', function () { });
+gulp.task(':lint:scss', function () {
+  return gulp.src(config.src + '/**/*.scss')
+         .pipe(scsslint({
+           'config': 'lint.yml',
+         }));
+});
 
 gulp.task(':lint:js', function () { });
 
