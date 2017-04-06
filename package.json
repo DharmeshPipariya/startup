@@ -2,6 +2,15 @@
   "name": "startup",
   "version": "0.0.1",
   "description": "Startup for Web developemnt",
+  "scripts": {
+    "build": "gulp build",
+    "build:watch": "tsc -p src/ -w",
+    "serve": "gulp serve",
+    "prestart": "npm run build",
+    "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "lint": "tslint ./src/**/*.ts -t verbose",
+    "bundle": "gulp bundle"
+  },
   "keywords": [
     "startup",
     "front end development",
